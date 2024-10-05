@@ -22,6 +22,7 @@ import {
   PlusIcon,
   Squares2X2Icon,
 } from "@heroicons/react/20/solid";
+import { Link } from "react-router-dom";
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
@@ -38,7 +39,7 @@ export default function Productlist() {
     { name: "Price: Low to High", href: "#", current: false },
     { name: "Price: High to Low", href: "#", current: false },
   ];
- 
+
   const filters = [
     {
       id: "color",
@@ -146,8 +147,6 @@ export default function Productlist() {
                 </div>
                 {/* Filters */}
                 <form className="mt-4 border-t border-gray-200">
-                 
-
                   {filters.map((section) => (
                     <Disclosure
                       key={section.id}
@@ -271,8 +270,6 @@ export default function Productlist() {
               <div className="grid grid-cols-1 gap-x-8 gap-y-10 lg:grid-cols-4">
                 {/* Filters */}
                 <form className="hidden lg:block">
-                
-
                   {filters.map((section) => (
                     <Disclosure
                       key={section.id}
@@ -296,6 +293,7 @@ export default function Productlist() {
                           </span>
                         </DisclosureButton>
                       </h3>
+
                       <DisclosurePanel className="pt-6">
                         <div className="space-y-4">
                           {section.options.map((option, optionIdx) => (
@@ -333,39 +331,40 @@ export default function Productlist() {
                       <h2 className="text-2xl font-bold tracking-tight text-gray-900">
                         Products
                       </h2>
-
-                      <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
-                        {products.map((product) => (
-                          <div key={product.id} className="group relative">
-                            <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-80">
-                              <img
-                                alt={product.imageAlt}
-                                src={product.imageSrc}
-                                className="h-full w-full object-cover object-center lg:h-full lg:w-full"
-                              />
-                            </div>
-                            <div className="mt-4 flex justify-between">
-                              <div>
-                                <h3 className="text-sm text-gray-700">
-                                  <a href={product.href}>
-                                    <span
-                                      aria-hidden="true"
-                                      className="absolute inset-0"
-                                    />
-                                    {product.name}
-                                  </a>
-                                </h3>
-                                <p className="mt-1 text-sm text-gray-500">
-                                  {product.color}
+                      <Link to={"/productDetails"}>
+                        <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
+                          {products.map((product) => (
+                            <div key={product.id} className="group relative">
+                              <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-80">
+                                <img
+                                  alt={product.imageAlt}
+                                  src={product.imageSrc}
+                                  className="h-full w-full object-cover object-center lg:h-full lg:w-full"
+                                />
+                              </div>
+                              <div className="mt-4 flex justify-between">
+                                <div>
+                                  <h3 className="text-sm text-gray-700">
+                                    <a href={product.href}>
+                                      <span
+                                        aria-hidden="true"
+                                        className="absolute inset-0"
+                                      />
+                                      {product.name}
+                                    </a>
+                                  </h3>
+                                  <p className="mt-1 text-sm text-gray-500">
+                                    {product.color}
+                                  </p>
+                                </div>
+                                <p className="text-sm font-medium text-gray-900">
+                                  {product.price}
                                 </p>
                               </div>
-                              <p className="text-sm font-medium text-gray-900">
-                                {product.price}
-                              </p>
                             </div>
-                          </div>
-                        ))}
-                      </div>
+                          ))}
+                        </div>
+                      </Link>
                     </div>
                   </div>
                 </div>
